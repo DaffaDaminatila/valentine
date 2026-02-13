@@ -10,22 +10,22 @@ const gifStages = [
 ]
 
 const noMessages = [
-    "No",
-    "Are you positive? 🤔",
-    "Pookie please... 🥺",
-    "If you say no, I will be really sad...",
-    "I will be very sad... 😢",
+    "Nggak",
+    "Yakin nih? 🤔",
+    "Sayang please... 🥺",
+    "Kalau kamu bilang nggak, aku bakal sedih banget...",
+    "Aku bakal sedih banget loh... 😢",
     "Please??? 💔",
-    "Don't do this to me...",
-    "Last chance! 😭",
-    "You can't catch me anyway 😜"
+    "Jangan gini dong...",
+    "Kesempatan terakhir! 😭",
+    "Kamu nggak bisa nangkep aku 😜"
 ]
 
 const yesTeasePokes = [
-    "try saying no first... I bet you want to know what happens 😏",
-    "go on, hit no... just once 👀",
-    "you're missing out 😈",
-    "click no, I dare you 😏"
+    "coba pencet nggak dulu... penasaran kan apa yang terjadi 😏",
+    "ayo, pencet nggak... sekali aja 👀",
+    "rugi loh kalau nggak dicoba 😈",
+    "pencet nggak, berani nggak? 😏"
 ]
 
 let yesTeasedCount = 0
