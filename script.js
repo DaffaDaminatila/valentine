@@ -39,18 +39,33 @@ const yesBtn = document.getElementById('yes-btn')
 const noBtn = document.getElementById('no-btn')
 const music = document.getElementById('bg-music')
 
-// Autoplay: audio starts muted (bypasses browser policy), unmute immediately
-music.muted = true
+// Autoplay strategy: try unmuted first, fallback to muted then unmute on interaction
 music.volume = 0.3
-music.play().then(() => {
+
+function tryPlayUnmuted() {
     music.muted = false
-}).catch(() => {
-    // Fallback: unmute on first interaction
-    document.addEventListener('click', () => {
-        music.muted = false
+    music.play().then(() => {
+        musicPlaying = true
+    }).catch(() => {
+        // Browser blocked unmuted autoplay — play muted first, unmute on interaction
+        music.muted = true
         music.play().catch(() => { })
-    }, { once: true })
-})
+        function unmuteOnInteraction() {
+            music.muted = false
+            music.play().catch(() => { })
+            musicPlaying = true
+            document.getElementById('music-toggle').textContent = '🔊'
+                ;['click', 'touchstart', 'scroll', 'keydown'].forEach(evt =>
+                    document.removeEventListener(evt, unmuteOnInteraction)
+                )
+        }
+        ;['click', 'touchstart', 'scroll', 'keydown'].forEach(evt =>
+            document.addEventListener(evt, unmuteOnInteraction, { once: false })
+        )
+    })
+}
+
+tryPlayUnmuted()
 
 function toggleMusic() {
     if (musicPlaying) {
